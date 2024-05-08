@@ -53,6 +53,26 @@ elSelect.addEventListener('change', function () {
    console.log(elSelectedMovies);
    renderList(elSelectedMovies);
 });
+
+const elModalBody = document.querySelector('.modal-body')
+function modalChiqargich(id) {
+   let film = films.find((el) => el.id == id)
+
+
+   elModalBody.innerHTML = `
+      <div class="itemmodal"> 
+        <img src="${film.poster}" alt="" class="img-modal">
+      <div class="box">
+          <h1 class="title">${film.title}</h1>
+          <p class="desc">${film.overview}</p>
+      </div>  
+       </div>
+         `
+
+
+
+}
+
 function renderList(array) {
    elList.innerHTML = ''
    array.forEach((el) => {
@@ -68,10 +88,13 @@ function renderList(array) {
        ${el.title}
    </p>
  <p class="one">  ${"Genres: " + change(el.genres)}</p>
-   <div class="buttun">
-       <button class="btn">More</button>
-       <button class="btn2">Save</button>
+ <div class="buttun">
+ <button type="button" onclick = "modalChiqargich(${el.id})" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+ More
+</button>   
+ <button class="btn2">Save</button>
    </div>
+
 </li>`;
    });
 
@@ -84,7 +107,6 @@ function renderList(array) {
          el.title.toLowerCase().includes(elSearch.value.toLowerCase())
       );
       renderList(searchMovies);
-   })
+   });
 
 }
-
