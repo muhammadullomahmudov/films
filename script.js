@@ -102,7 +102,7 @@ function renderList(array) {
    const elSearch = document.querySelector('.search')
 
 
-   elSearch.addEventListener('keydown', function () {
+   elForm.addEventListener('submit', function () {
       const searchMovies = films.filter((el) =>
          el.title.toLowerCase().includes(elSearch.value.toLowerCase())
       );
